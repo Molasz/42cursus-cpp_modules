@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 12:07:48 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/08/17 16:32:43 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:29:35 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,15 @@ class PhoneBook
 {
 	private:
 		Contact contacts[8];
+		int	validatefName(Contact *);
+		int	validatesName(Contact *);
+		int	validateNick(Contact *);
+		int	validatePhone(Contact *);
+		int	validateSecret(Contact *);
 	public:
 		PhoneBook(void);
 		~PhoneBook(void);
-		int		add(void);
+		void	add(void);
 		void	search(void);
 };
 
