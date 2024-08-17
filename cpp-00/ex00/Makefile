@@ -6,7 +6,7 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/08/15 14:02:20 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/08/17 12:00:08 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,4 +37,4 @@ fclean:		clean
 
 re: 		fclean $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re dir

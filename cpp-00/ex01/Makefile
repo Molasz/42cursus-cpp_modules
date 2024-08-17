@@ -6,17 +6,20 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/08/15 14:02:20 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/08/17 14:57:50 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
-SRC = megaphone.cpp
+SRC = main.cpp \
+		PhoneBook.cpp \
+		Contact.cpp
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = g++
 RM = rm -rf
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS = -g -std=c++98 -pedantic
+#CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 all:		dir $(NAME)
 
@@ -37,4 +40,4 @@ fclean:		clean
 
 re: 		fclean $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re dir
