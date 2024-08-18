@@ -6,7 +6,7 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/08/18 16:19:24 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/08/18 17:11:51 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,19 @@ SRC = main.cpp \
 		newZombie.cpp \
 		randomChump.cpp
 
+INCLUDES = Zombie.hpp
+
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++
 RM = rm -rf
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 all:		dir $(NAME)
 
 dir:
 				mkdir -p obj
 
-obj/%.o:		%.cpp Makefile
+obj/%.o:		%.cpp Makefile $(INCLUDES)
 				$(CC) $(CPPFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJ)

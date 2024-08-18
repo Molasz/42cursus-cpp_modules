@@ -6,7 +6,7 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/08/18 12:20:33 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/08/18 17:09:43 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,12 @@ NAME = phonebook
 SRC = main.cpp \
 		PhoneBook.cpp \
 		Contact.cpp
+
+INCLUDES = Contact.hpp \
+		   PhoneBook.hpp
+
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
-CC = g++
+CC = c++
 RM = rm -rf
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
@@ -25,7 +29,7 @@ all:		dir $(NAME)
 dir:
 				mkdir -p obj
 
-obj/%.o:		%.cpp Makefile
+obj/%.o:		%.cpp Makefile $(INCLUDES)
 				$(CC) $(CPPFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJ)
