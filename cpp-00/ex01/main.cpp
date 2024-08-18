@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 12:10:38 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/08/17 18:08:09 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:28:08 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	main(int argc, char **argv)
 	(void) argv;
 	if (argc != 1)
 		std::cout << "Arguments not allowed" << std::endl;
-	while (true)
+	while (!std::cin.eof())
 	{
-		std:: cout << "Input command" << std::endl;
+		std:: cout << "> Input command" << std::endl;
 		std::getline(std::cin, str);
 		if (str == "ADD")
 			phoneBook.add();
