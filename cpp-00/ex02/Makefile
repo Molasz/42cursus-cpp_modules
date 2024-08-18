@@ -6,20 +6,18 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/08/17 14:57:50 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/08/18 13:11:29 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = globalBanksters
 
-SRC = main.cpp \
-		PhoneBook.cpp \
-		Contact.cpp
+SRC = tests.cpp \
+		Account.cpp
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = g++
 RM = rm -rf
-CPPFLAGS = -g -std=c++98 -pedantic
-#CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 
 all:		dir $(NAME)
 
@@ -38,6 +36,6 @@ clean:
 fclean:		clean
 				$(RM) $(NAME)
 
-re: 		fclean $(NAME)
+re: 		fclean all
 
 .PHONY: all clean fclean re dir
