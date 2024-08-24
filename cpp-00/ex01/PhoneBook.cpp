@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 12:26:29 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/08/17 18:31:37 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/08/24 21:37:38 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static bool	validateDigits(std::string str)
 	return (true);
 }
 
-int	PhoneBook::validatefName(Contact *contact)
+bool	PhoneBook::validatefName(Contact *contact)
 {
 	std::string	str;
 
@@ -50,18 +50,19 @@ int	PhoneBook::validatefName(Contact *contact)
 	{
 		std::cout << "First name (only alphabetic characters are allowed): ";
 		std::getline(std::cin, str);
-		if (!str.empty() && validateAlpha(str))
+		if ((!str.empty() && validateAlpha(str)) || std::cin.eof())
 			break;
 		std::cout << "Invalid first name. Retry: Y/n ";
 		getline(std::cin, str);
 		if (str == "n" || str == "N")
 			return (true);
 	}
-	contact->setfName(str);
-	return (false);
+	if (!std::cin.eof())
+		return (contact->setfName(str), false);
+	return (std::cout << std::endl, true);
 }
 
-int	PhoneBook::validatesName(Contact *contact)
+bool	PhoneBook::validatesName(Contact *contact)
 {
 	std::string	str;
 
@@ -69,18 +70,19 @@ int	PhoneBook::validatesName(Contact *contact)
 	{
 		std::cout << "Second name (only alphabetic characters are allowed): ";
 		std::getline(std::cin, str);
-		if (!str.empty() && validateAlpha(str))
+		if ((!str.empty() && validateAlpha(str)) || std::cin.eof())
 			break;
 		std::cout << "Invalid second name. Retry: Y/n ";
 		getline(std::cin, str);
 		if (str == "n" || str == "N")
 			return (true);
 	}
-	contact->setsName(str);
-	return (false);
+	if (!std::cin.eof())
+		return (contact->setsName(str), false);
+	return (std::cout << std::endl, true);
 }
 
-int	PhoneBook::validateNick(Contact *contact)
+bool	PhoneBook::validateNick(Contact *contact)
 {
 	std::string	str;
 
@@ -88,18 +90,19 @@ int	PhoneBook::validateNick(Contact *contact)
 	{
 		std::cout << "Nickname: ";
 		std::getline(std::cin, str);
-		if (!str.empty())
+		if (!str.empty() || std::cin.eof())
 			break;
 		std::cout << "Invalid nickname. Retry: Y/n ";
 		getline(std::cin, str);
 		if (str == "n" || str == "N")
 			return (true);
 	}
-	contact->setNick(str);
-	return (false);
+	if (!std::cin.eof())
+		return(contact->setNick(str), false);
+	return (std::cout << std::endl, true);
 }
 
-int	PhoneBook::validatePhone(Contact *contact)
+bool	PhoneBook::validatePhone(Contact *contact)
 {
 	std::string	str;
 
@@ -107,18 +110,19 @@ int	PhoneBook::validatePhone(Contact *contact)
 	{
 		std::cout << "Phone (9 digits required): ";
 		std::getline(std::cin, str);
-		if (!str.empty() && validateDigits(str))
+		if ((!str.empty() && validateDigits(str)) || std::cin.eof())
 			break;
 		std::cout << "Invalid phone. Retry: Y/n ";
 		getline(std::cin, str);
 		if (str == "n" || str == "N")
 			return (true);
 	}
-	contact->setPhone(str);
-	return (false);
+	if (!std::cin.eof())
+		return (contact->setPhone(str), false);
+	return (std::cout << std::endl, true);
 }
 
-int	PhoneBook::validateSecret(Contact *contact)
+bool	PhoneBook::validateSecret(Contact *contact)
 {
 	std::string	str;
 
@@ -126,15 +130,16 @@ int	PhoneBook::validateSecret(Contact *contact)
 	{
 		std::cout << "Dark secret: ";
 		std::getline(std::cin, str);
-		if (!str.empty())
+		if (!str.empty() || std::cin.eof())
 			break;
 		std::cout << "Invalid secret. Retry: Y/n ";
 		getline(std::cin, str);
 		if (str == "n" || str == "N")
 			return (true);
 	}
-	contact->setSecret(str);
-	return (false);
+	if (!std::cin.eof())
+		return (contact->setSecret(str), false);
+	return (std::cout << std::endl, true);
 }
 
 void	PhoneBook::add(void)
@@ -142,15 +147,15 @@ void	PhoneBook::add(void)
 	Contact		contact;
 	Contact		saveContact;
 
-	if (validatefName(&contact) || validatesName(&contact)
-		|| validateNick(&contact) || validatePhone(&contact)
-		|| validateSecret(&contact))
-		return ;
-	for(int i = 0; i < 8 && !contact.getfName().empty(); i++)
+	if (!(validatefName(&contact) || validatesName(&contact) || validateNick(&contact)
+			|| validatePhone(&contact) || validateSecret(&contact)))
 	{
-		saveContact = this->contacts[i];
-		this->contacts[i] = contact;
-		contact = saveContact;
+		for(int i = 0; i < 8 && !contact.getfName().empty(); i++)
+		{
+			saveContact = this->contacts[i];
+			this->contacts[i] = contact;
+			contact = saveContact;
+		}
 	}
 }
 
@@ -163,13 +168,14 @@ static std::string	truncate(std::string str)
 
 static void	printContact(Contact contact)
 {
-	if (contact.getfName().empty())
-		return ;
-	std::cout << "First name: " << contact.getfName() << std::endl;
-	std::cout << "Second name: " << contact.getsName() << std::endl;
-	std::cout << "Nickname: " << contact.getNick() << std::endl;
-	std::cout << "Phone: " << contact.getPhone() << std::endl;
-	std::cout << "Dark secret: " << contact.getSecret() << std::endl;
+	if (!contact.getfName().empty())
+	{
+		std::cout << "First name: " << contact.getfName() << std::endl;
+		std::cout << "Second name: " << contact.getsName() << std::endl;
+		std::cout << "Nickname: " << contact.getNick() << std::endl;
+		std::cout << "Phone: " << contact.getPhone() << std::endl;
+		std::cout << "Dark secret: " << contact.getSecret() << std::endl;
+	}
 }
 
 void	PhoneBook::search(void)
@@ -190,7 +196,7 @@ void	PhoneBook::search(void)
 		std::cout << '|' << std::setw(10) << truncate(this->contacts[i].getfName());
 		std::cout << '|' << std::setw(10) << truncate(this->contacts[i].getsName());
 		std::cout << '|' << std::setw(10) << truncate(this->contacts[i].getNick());
-	std::cout << '|' << std::endl;
+		std::cout << '|' << std::endl;
 	}
 	while(!std::cin.eof())
 	{
