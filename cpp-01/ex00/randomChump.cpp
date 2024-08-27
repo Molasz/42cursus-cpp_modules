@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   rendomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
+/*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 16:28:02 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/08/27 21:27:31 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/08/27 21:25:19 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/08/27 21:26:23 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie	*newZombie(std::string name)
+void	randomChump(std::string name)
 {
-	return new Zombie(name);
+	Zombie	zombie(name);
+
+	zombie.announce();
 }
