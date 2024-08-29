@@ -14,12 +14,12 @@ NAME =
 
 SRC = main.cpp \
 
-INCLUDES =
+INCLUDES =  Zombie.hpp
 
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++
 RM = rm -rf
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
 
 all:		dir $(NAME)
 

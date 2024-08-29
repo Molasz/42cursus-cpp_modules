@@ -6,27 +6,29 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/08/18 17:13:10 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/08/29 20:48:48 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =
+NAME = horde
 
 SRC = main.cpp \
+		Zombie.cpp \
+		zombieHorde.cpp
 
-INCLUDES =
+INCLUDES = Zombie.hpp
 
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++
 RM = rm -rf
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
 
 all:		dir $(NAME)
 
 dir:
 				mkdir -p obj
 
-obj/%.o:	%.cpp Makefile $(INCLUDES)
+obj/%.o:		%.cpp Makefile $(INCLUDES)
 				$(CC) $(CPPFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJ)
