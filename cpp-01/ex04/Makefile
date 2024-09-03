@@ -6,15 +6,13 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/08/18 17:13:10 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/09/03 13:23:47 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =
+NAME = sed
 
 SRC = main.cpp \
-
-INCLUDES =  Zombie.hpp
 
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++
@@ -26,7 +24,7 @@ all:		dir $(NAME)
 dir:
 				mkdir -p obj
 
-obj/%.o:	%.cpp Makefile $(INCLUDES)
+obj/%.o:	%.cpp Makefile
 				$(CC) $(CPPFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJ)

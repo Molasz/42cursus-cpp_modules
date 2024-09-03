@@ -6,20 +6,23 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/08/18 17:13:10 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/09/03 12:48:41 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =
+NAME = violence
 
 SRC = main.cpp \
+		Weapon.cpp \
+		HumanA.cpp \
+		HumanB.cpp
 
-INCLUDES = Zombie.hpp
+INCLUDES = Weapon.hpp HumanA.hpp HumanB.hpp
 
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++
 RM = rm -rf
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic #-fsanitize=address
 
 all:		dir $(NAME)
 
