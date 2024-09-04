@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:50:38 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/03 20:26:06 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:06:32 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	replace(std::ifstream *infile, std::ofstream *outfile, std::string str1, st
 			else
 				*outfile << line[i];
 		}
+		*outfile << '\n';
 	}
 }
 
