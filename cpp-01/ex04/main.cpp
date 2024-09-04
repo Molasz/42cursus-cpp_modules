@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:50:38 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/04 16:06:32 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/04 20:06:33 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	replace(std::ifstream *infile, std::ofstream *outfile, std::string str1, st
 					break;
 				j++;
 			}
-			if (j == (int) str1.length())
+			if (j == (int) str1.length() && j)
 			{
 				*outfile << str2;
 				i += j - 1;
@@ -48,6 +48,8 @@ int	main(int argc, char **argv)
 		return (std::cout << "3 Args required" << std::endl, 1);
 	filename = (std::string) argv[1] + ".replace";
 	std::ifstream	infile(argv[1]);
+	if (!infile.is_open())
+		return (std::cout << "Can't open " << argv[1] << " file" << std::endl, 1);
 	std::ofstream	outfile(filename.c_str());
 	replace(&infile, &outfile, argv[2], argv[3]);
 	infile.close();
