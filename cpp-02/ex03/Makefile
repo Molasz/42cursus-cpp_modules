@@ -6,16 +6,18 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/09/06 12:35:07 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/09/06 20:11:15 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed
+NAME = BSP
 
 SRC = main.cpp \
-		Fixed.cpp
+		Fixed.cpp \
+		Point.cpp \
+		bsp.cpp
 
-INCLUDES = Fixed.hpp
+INCLUDES = Fixed.hpp Point.hpp
 
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++

@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 12:35:48 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/06 17:53:24 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/06 20:16:03 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Fixed
 		Fixed();
 		Fixed(const int value);
 		Fixed(const float value);
-		Fixed(Fixed const &copy);
+		Fixed(const Fixed &copy);
 		Fixed& operator=(const Fixed &copy);
 		~Fixed();
 

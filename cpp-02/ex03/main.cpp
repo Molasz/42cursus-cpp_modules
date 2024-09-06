@@ -6,23 +6,28 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 12:35:14 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/06 17:14:25 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/06 21:04:09 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "Point.hpp"
+
+void	check_points(Point point, Point a, Point b, Point c)
+{
+	if (bsp(a, b, c, point))
+		std::cout << "INSIDE" << std::endl;
+	else
+		std::cout << "OUTSIDE" << std::endl;
+}
 
 int	main(void)
 {
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	
-	return (0);
+	Point	pointA(2, 2), pointB(5,3);
+	Point	a(0,0), b(5,0), c(0,5);
+
+	check_points(pointA, a, b, c);
+	check_points(pointB, a, b, c);
+	check_points(a, a, b, c);
+	check_points(a, b, c, pointA);
+	check_points(c, b, a, pointB);
 }
