@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:50:38 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/04 20:06:33 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:32:17 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	main(int argc, char **argv)
 	if (!infile.is_open())
 		return (std::cout << "Can't open " << argv[1] << " file" << std::endl, 1);
 	std::ofstream	outfile(filename.c_str());
+	if (!infile.is_open())
+		return (std::cout << "Can't open " << argv[1] << ".replace " << " file" << std::endl, 1);
 	replace(&infile, &outfile, argv[2], argv[3]);
 	infile.close();
 	outfile.close();
