@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 12:35:14 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/06 21:04:09 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/07 10:22:11 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	main(void)
 	check_points(pointA, a, b, c);
 	check_points(pointB, a, b, c);
 	check_points(a, a, b, c);
-	check_points(a, b, c, pointA);
-	check_points(c, b, a, pointB);
+	check_points(b, a, b, c);
+	check_points(c, a, b, c);
 }

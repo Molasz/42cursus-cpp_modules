@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 20:11:48 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/06 21:07:46 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/07 10:21:29 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	a2 = area(point, b, c);
 	a3 = area(point, c, a);
 
-	return (!(a1 < 0 || a2 < 0 || a3 < 0)
-			&& (a1 > 0 || a2 > 0 || a3 > 0)
-			&& a1 != 0 && a2 != 0 && a3 != 0);
+	return (!(a1 <= 0 || a2 <= 0 || a3 <= 0)
+			&& (a1 >= 0 || a2 >= 0 || a3 >= 0));
 }
 
 
