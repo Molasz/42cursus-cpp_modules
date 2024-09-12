@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 12:35:48 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/06 17:53:24 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:35:37 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ class Fixed
 		float	operator*(Fixed const other) const;
 
 		Fixed	&operator++(void);
-		Fixed	&operator++(int);
+		Fixed	operator++(int);
 		Fixed	&operator--(void);
-		Fixed	&operator--(int);
+		Fixed	operator--(int);
 
 		static const Fixed	&min(Fixed &a, Fixed &b);
 		static const Fixed	&max(Fixed &a, Fixed &b);

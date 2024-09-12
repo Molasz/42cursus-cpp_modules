@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 12:46:55 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/06 20:07:05 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:35:27 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,16 @@ float	Fixed::operator/(Fixed other) const
 
 Fixed	&Fixed::operator++(void)
 {
-	++_value;
+	_value++;
 	return (*this);
 }
 
-Fixed	&Fixed::operator++(int)
+Fixed	Fixed::operator++(int)
 {
+	Fixed	tmp(*this);
+
 	_value++;
-	return (*this);
+	return (tmp);
 }
 
 
@@ -129,10 +131,12 @@ Fixed	&Fixed::operator--(void)
 	return (*this);
 }
 
-Fixed	&Fixed::operator--(int)
+Fixed	Fixed::operator--(int)
 {
+	Fixed	tmp(*this);
+
 	_value--;
-	return (*this);
+	return (tmp);
 }
 
 const Fixed	&Fixed::min(Fixed &a, Fixed &b)
