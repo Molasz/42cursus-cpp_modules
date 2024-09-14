@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 18:58:33 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/14 13:52:28 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/09/14 13:55:17 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/09/14 13:56:49 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-int	main(void)
+#include <iostream>
+#include "ClapTrap.hpp"
+
+class FragTrap : public ClapTrap
 {
-	ScavTrap	scav("SCAV");
+	private:
+		bool	_guard;
+	public:
+		FragTrap(void);
+		FragTrap(const std::string name);
+		FragTrap(const FragTrap &copy);
+		FragTrap& operator=(const FragTrap &copy);
+		~FragTrap(void);
+		void	highFiveGuys(void);
+};
 
-	scav.attack("CLAP");
-	scav.guardGate();
-	scav.attack("NONE");
-	scav.guardGate();
-	scav.attack("TRAP");
-	return (0);
-}
+#endif
+
