@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 20:37:17 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 20:49:34 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/09/16 20:09:18 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/09/16 21:05:27 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
+
+#include <iostream>
 #include "AMateria.hpp"
 
-AMateria::AMateria(std::string const &type): _type(type)
-{
-}
+class AMateria;
 
-AMateria::AMateria(const AMateria &copy): _type(copy._type)
+class ICharacter
 {
-}
+	public:
+		virtual ~ICharacter() {}
+		virtual std::string const & getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
+};
 
-AMateria	&AMateria::operator=(const AMateria &copy)
-{
-	_type = copy._type;
-	return (*this);
-}
-
-AMateria::~AMateria(void)
-{
-}
-
-std::string	const &AMateria::getType(void) const
-{
-	return _type;
-}
+#endif

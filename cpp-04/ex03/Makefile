@@ -6,19 +6,15 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/09/16 18:15:12 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/09/16 20:23:27 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = abstract
+NAME = interface
 
-SRC = main.cpp \
-		Animal.cpp \
-		Dog.cpp \
-		Cat.cpp \
-		Brain.cpp
+SRC = main.cpp
 
-INCLUDES = Animal.hpp Cat.hpp Dog.hpp Brain.hpp 
+INCLUDES = AMateria.hpp ICharacter.hpp 
 
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++
