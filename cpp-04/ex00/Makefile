@@ -6,7 +6,7 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/09/16 10:53:07 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/09/16 13:30:38 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,11 @@ NAME = animals
 SRC = main.cpp \
 		Animal.cpp \
 		Dog.cpp \
-		Cat.cpp
+		Cat.cpp \
+		WrongAnimal.cpp \
+		WrongCat.cpp
 
-INCLUDES = Animal.hpp Cat.hpp Dog.hpp
+INCLUDES = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp 
 
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++
