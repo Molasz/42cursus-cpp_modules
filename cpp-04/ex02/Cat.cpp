@@ -1,52 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 10:46:57 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:11:45 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/09/16 10:40:46 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/09/16 18:18:21 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Cat.hpp"
 
-Dog::Dog(void): Animal()
+Cat::Cat(void): A_Animal()
 {
-	_type = "Dog";
+	_type = "Cat";
 	_brain = new Brain();
-	std::cout << "Dog created NORMAL" << std::endl;
+	std::cout << "Cat created" << std::endl;
 }
 
-Dog::Dog(const Dog &copy): Animal()
+Cat::Cat(const Cat &copy): A_Animal()
 {
 	_type = copy._type;
 	_brain = new Brain();
-	std::cout << "Dog created COPY" << std::endl;
+	std::cout << "Cat created" << std::endl;
 }
 
-
-Dog	&Dog::operator=(const Dog &copy)
+Cat	&Cat::operator=(const Cat &copy)
 {
 	_type = copy._type;
 	_brain = new Brain();
-	std::cout << "Dog created EQUAL" << std::endl;
+	std::cout << "Cat created" << std::endl;
 	return (*this);
 }
 
-Dog::~Dog(void)
+Cat::~Cat(void)
 {
 	delete _brain;
-	std::cout << "Dog destroyed" << std::endl;
+	std::cout << "Cat destroyed" << std::endl;
 }
 
-void	Dog::makeSound(void)
+void	Cat::makeSound(void)
 {
-	std::cout << "Bup bup" << std::endl;
+	std::cout << "meeeeeeeeew" << std::endl;
 }
 
-Brain	*Dog::getBrain(void)
+Brain	*Cat::getBrain(void)
 {
 	return (_brain);
 }

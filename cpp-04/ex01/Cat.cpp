@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:40:46 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 17:48:11 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:11:31 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,9 @@ Cat::~Cat(void)
 void	Cat::makeSound(void)
 {
 	std::cout << "meeeeeeeeew" << std::endl;
+}
+
+Brain	*Cat::getBrain(void)
+{
+	return (_brain);
 }

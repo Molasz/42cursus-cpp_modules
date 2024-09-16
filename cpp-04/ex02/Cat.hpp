@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 10:36:06 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:12:03 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/09/16 10:31:31 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/09/16 18:17:00 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Dog: public Animal
+class Cat: public A_Animal
 {
 	private:
 		Brain	*_brain;
 	public:
-		Dog(void);
-		Dog(const Dog &copy);
-		Dog	&operator=(const Dog &copy);
-		~Dog(void);
+		Cat(void);
+		Cat(const Cat &copy);
+		Cat	&operator=(const Cat &copy);
+		~Cat(void);
 		void	makeSound(void);
 		Brain	*getBrain(void);
 };
-#endif
 
+#endif

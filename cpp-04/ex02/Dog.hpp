@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:36:06 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:12:03 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:17:10 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Dog: public Animal
+class Dog: public A_Animal
 {
 	private:
 		Brain	*_brain;

@@ -6,20 +6,20 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:46:57 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:11:45 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:18:12 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog(void): Animal()
+Dog::Dog(void): A_Animal()
 {
 	_type = "Dog";
 	_brain = new Brain();
 	std::cout << "Dog created NORMAL" << std::endl;
 }
 
-Dog::Dog(const Dog &copy): Animal()
+Dog::Dog(const Dog &copy): A_Animal()
 {
 	_type = copy._type;
 	_brain = new Brain();

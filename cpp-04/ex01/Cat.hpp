@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:31:31 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 17:23:41 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:08:40 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Cat: public Animal
 		Cat	&operator=(const Cat &copy);
 		~Cat(void);
 		void	makeSound(void);
+		Brain	*getBrain(void);
 };
 
 #endif
