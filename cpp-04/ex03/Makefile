@@ -6,7 +6,7 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/09/18 11:49:33 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/09/18 12:39:07 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCLUDES = AMateria.hpp IMateriaSource.hpp ICharacter.hpp \
 OBJ = $(addprefix obj/, $(SRC:%.cpp=%.o))
 CC = c++
 RM = rm -rf
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic #-fsanitize=address -g
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
 
 all:		dir $(NAME)
 
