@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:50:48 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:24:05 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:23:39 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(void)
 	std::cout << "END" << std::endl;
 
 	Dog	dog;
+	dog.getBrain()->setIdea("HOLA", 12);
 	Dog	dogCopy = Dog(dog);
 
 	std::cout << "DOG ideas: "  << dog.getBrain()->getIdeas()[12]  << std::endl;

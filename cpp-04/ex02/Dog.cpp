@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:46:57 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:18:12 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:17:26 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Dog::Dog(void): A_Animal()
 Dog::Dog(const Dog &copy): A_Animal()
 {
 	_type = copy._type;
-	_brain = new Brain();
+	_brain = new Brain(*copy._brain);
 	std::cout << "Dog created COPY" << std::endl;
 }
 
@@ -30,7 +30,7 @@ Dog::Dog(const Dog &copy): A_Animal()
 Dog	&Dog::operator=(const Dog &copy)
 {
 	_type = copy._type;
-	_brain = new Brain();
+	_brain = new Brain(*copy._brain);
 	std::cout << "Dog created EQUAL" << std::endl;
 	return (*this);
 }
