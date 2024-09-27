@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:00:03 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/17 21:18:14 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:49:17 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ Character::~Character(void)
 	for (int i = 0; i < 4; i++)
 	{
 		if (_slots[i])
+		{
 			delete _slots[i];
+		}
 	}
 	if (_trash)
 		delete _trash;
@@ -66,7 +68,7 @@ void	Character::equip(AMateria *m)
 	{
 		if (!_slots[i])
 		{
-			_slots[i] = m->clone();
+			_slots[i] = m;
 			return ;
 		}
 	}

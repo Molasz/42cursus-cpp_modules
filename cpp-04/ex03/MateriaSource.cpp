@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:21:33 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/17 21:08:59 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:45:25 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	MateriaSource::learnMateria(AMateria *material)
 	{
 		if (!_slots[i])
 		{
-			_slots[i] = material->clone();
+			_slots[i] = material;
 			return ;
 		}
 	}

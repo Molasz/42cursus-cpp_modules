@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:45:31 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/17 20:46:48 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:58:52 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int main()
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+	me->unequip(1);
+	me->unequip(0);
 	delete bob;
 	delete me;
 	delete src;
