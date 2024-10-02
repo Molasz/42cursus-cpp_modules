@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:52:17 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:08:20 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:17:51 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ Brain::~Brain(void)
 std::string	*Brain::getIdeas(void)
 {
 	return _ideas;
+}
+
+void	Brain::setIdea(std::string idea, int i)
+{
+	_ideas[i] = idea;
 }

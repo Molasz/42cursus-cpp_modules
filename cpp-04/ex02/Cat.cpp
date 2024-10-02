@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:40:46 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/27 19:16:58 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:26:33 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Cat::Cat(const Cat &copy): A_Animal()
 Cat	&Cat::operator=(const Cat &copy)
 {
 	_type = copy._type;
-	_brain = new Brain(*copy._brain);
+	*_brain = *copy._brain;
 	std::cout << "Cat created" << std::endl;
 	return (*this);
 }

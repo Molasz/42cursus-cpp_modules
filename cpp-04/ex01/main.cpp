@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:50:48 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:14:05 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:18:48 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	main(void)
 		delete animals[i];
 	std::cout << "END" << std::endl;
 
-	Dog	dog;
-	Dog	dogCopy = Dog(dog);
+	Dog	dog, dogCopy;
+	dog.getBrain()->setIdea("HOLA", 12);
+	dogCopy = dog;
 
 	std::cout << "DOG ideas: "  << dog.getBrain()->getIdeas()[12]  << std::endl;
 	std::cout << "DOG COPY ideas: "  << dogCopy.getBrain()->getIdeas()[12] << std::endl;

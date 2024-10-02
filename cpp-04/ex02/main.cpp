@@ -6,12 +6,13 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:50:48 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/27 19:23:39 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:37:56 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 #include "Cat.hpp"
+
 
 int	main(void)
 {
@@ -28,7 +29,7 @@ int	main(void)
 
 	Dog	dog;
 	dog.getBrain()->setIdea("HOLA", 12);
-	Dog	dogCopy = Dog(dog);
+	Dog	dogCopy = dog;
 
 	std::cout << "DOG ideas: "  << dog.getBrain()->getIdeas()[12]  << std::endl;
 	std::cout << "DOG COPY ideas: "  << dogCopy.getBrain()->getIdeas()[12] << std::endl;

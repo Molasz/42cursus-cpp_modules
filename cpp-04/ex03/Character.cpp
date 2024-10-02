@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:00:03 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/18 11:49:17 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:54:24 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,15 @@ Character	&Character::operator=(const Character &copy)
 {
 	_name = copy._name;
 	for (int i = 0; i < 4; i++)
-		_slots[i] = copy._slots[i]->clone();
-	_trash = copy._trash;
+	{
+		if (_slots[i])
+			delete _slots[i];
+		if (copy._slots[i])
+			_slots[i] = copy._slots[i]->clone();
+		else
+			_slots[i] = NULL;
+	}
+	_trash = copy._trash->clone();
 	return (*this);
 }
 
@@ -72,6 +79,7 @@ void	Character::equip(AMateria *m)
 			return ;
 		}
 	}
+	delete m;
 }
 
 void	Character::unequip(int i)

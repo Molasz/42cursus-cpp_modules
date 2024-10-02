@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:40:46 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/09/16 18:11:31 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:26:21 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ Cat::Cat(void): Animal()
 Cat::Cat(const Cat &copy): Animal()
 {
 	_type = copy._type;
-	_brain = new Brain();
+	_brain = new Brain(*copy._brain);
 	std::cout << "Cat created" << std::endl;
 }
 
 Cat	&Cat::operator=(const Cat &copy)
 {
 	_type = copy._type;
-	_brain = new Brain();
+	*_brain = *copy._brain;
 	std::cout << "Cat created" << std::endl;
 	return (*this);
 }
