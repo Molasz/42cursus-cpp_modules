@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:33:05 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/10/04 13:37:14 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:52:00 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <sstream>
+#include <limits.h>
 
 enum	InputType
 {
@@ -34,8 +35,9 @@ class ScalarConverter
 		static bool			_isChar(std::string &str);
 		static bool			_isSpecial(std::string &str);
 		static InputType	_getType(std::string &str);
-		static int			_strtoi(std::string &str);
-		static void			_print(std::string &str, int i, float f, double d, char c);
+		static int			_countDecimals(std::string &str);
+		static long			_strtol(std::string &str);
+		static void			_print(std::string &str, long i, float f, double d, char c);
 	public:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &ref);

@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:33:03 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/10/04 13:40:16 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:53:24 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,36 +111,45 @@ InputType	ScalarConverter::_getType(std::string &str)
 	return (ERROR);
 }
 
-int	ScalarConverter::_strtoi(std::string &str)
+long	ScalarConverter::_strtol(std::string &str)
 {
 	std::stringstream	s;
-	int					n;
+	long				n;
 
 	s << str;
 	s >> n;
 	return (n);
 }
 
-void	ScalarConverter::_print(std::string &str, int i, float f, double d, char c)
+int		ScalarConverter::_countDecimals(std::string &str)
 {
-	std::string	decimal = (int)f == f ? ".0" : "";
+	int	i = 0;
+
+	while (str[i] && str[i] != '.')
+		i++;
+	return(i);
+}
+
+void	ScalarConverter::_print(std::string &str, long i, float f, double d, char c)
+{
+	std::string	decimal = (long)f == f && _countDecimals(str) < 7 ? ".0" : "";
 	std::string	c_str(1, c);
 
 	std::cout << "STR: " << str << std::endl;
-	if (_isSpecial(str))
+	if (_isSpecial(str) || i > INT_MAX || i < INT_MIN)
 		std::cout << "INT: impossible" << std::endl;
 	else
 		std::cout << "INT: " << (i) << std::endl;
 	std::cout << "FLOAT: " << f << decimal << 'f' << std::endl
 		<<"DOUBLE: " << d << decimal << std::endl
-		<< "CHAR: " << (isprint(c) ? c_str : "No printable") << std::endl
+		<< "CHAR: " << (isprint(c) && i >= 32 && i <= 126 ? "'" + c_str + "'" : "No printable") << std::endl
 		<< std::endl;
 }
 
 void	ScalarConverter::convert(std::string &str)
 {
 	InputType	type = _getType(str);
-	int			i;
+	long		i;
 	char		c;
 	double		d;
 	float		f;
@@ -148,26 +157,26 @@ void	ScalarConverter::convert(std::string &str)
 	switch (type)
 	{
 		case INT:
-			i = _strtoi(str);
+			i = _strtol(str);
 			c = static_cast<char>(i);
 			d = static_cast<double>(i);
 			f = static_cast<float>(i);
 			break;
 		case DOUBLE:
 			d = std::strtod(str.c_str(), NULL);
-			i = static_cast<int>(d);
+			i = static_cast<long>(d);
 			c = static_cast<char>(d);
 			f = static_cast<float>(d);
 			break;
 		case FLOAT:
 			f = std::strtof(str.c_str(), NULL);
-			i = static_cast<int>(f);
+			i = static_cast<long>(f);
 			c = static_cast<char>(f);
 			d = static_cast<double>(f);
 			break;
 		case CHAR:
 			c = str[0];
-			i = static_cast<int>(c);
+			i = static_cast<long>(c);
 			d = static_cast<double>(c);
 			f = static_cast<float>(c);
 			break;
