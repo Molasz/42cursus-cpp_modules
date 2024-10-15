@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 17:38:51 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/10/15 18:07:37 by molasz-a         ###   ########.fr       */
+/*   Created: 2024/10/15 18:04:06 by molasz-a          #+#    #+#             */
+/*   Updated: 2024/10/15 18:22:16 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,10 @@
 
 #include <iostream>
 
-template <typename T>
-void	swap(T &x, T &y)
+template <typename T_arr, typename T_func>
+void	iter(T_arr &arr, size_t len, T_func func)
 {
-	T	temp;
-
-	temp = x;
-	x = y;
-	y = temp;
-}
-
-template <typename T>
-T	min(T &x, T &y)
-{
-	if (x > y)
-		return y;
-	return x;
-}
-
-template <typename T>
-T	max(T &x, T &y)
-{
-	if (x > y)
-		return x;
-	return y;
+	std::cout << len << std::endl;
+	for (size_t i = 0; i < len; i++)
+		func(arr[i]);
 }
