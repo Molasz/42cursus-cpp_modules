@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 13:38:38 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/10/14 14:17:43 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:36:56 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,17 @@ Base	*generate(void)
 
 void	identify(Base *base)
 {
-	char	c;
+	std::string	str;
 
-	if (dynamic_cast<A*>(base))
-		c = 'A';
-	if (dynamic_cast<B*>(base))
-		c = 'B';
-	if (dynamic_cast<C*>(base))
-		c = 'C';
-	std::cout << "[* " << c << "]";
+	if (!base)
+		str = "NULL";
+	else if (dynamic_cast<A*>(base))
+		str = "A";
+	else if (dynamic_cast<B*>(base))
+		str = "B";
+	else if (dynamic_cast<C*>(base))
+		str = "C";
+	std::cout << "[* " << str << "]";
 }
 
 void	identify(Base &base)
