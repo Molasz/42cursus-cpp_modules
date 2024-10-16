@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 13:38:38 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/10/15 11:36:56 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:07:00 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,27 @@ void	identify(Base *base)
 
 void	identify(Base &base)
 {
+	std::string	str;
 	Base	save;
-	char	c;
 
 	try {
 		save = dynamic_cast<A&>(base);
-		c = 'A';
+		str = "A";
 	} catch (std::exception &err)
 	{
 		try {
 			save = dynamic_cast<B&>(base);
-			c = 'B';
+			str = "B";
 		} catch (std::exception &err)
 		{
 			try {
 				save = dynamic_cast<C&>(base);
-				c = 'C';
+				str = "C";
 			} catch (std::exception &err)
 			{
+				str = "OTHER";
 			}
 		}
 	}
-	std::cout << "[& " << c << "]";
+	std::cout << "[& " << str << "]";
 }
