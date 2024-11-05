@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:55:27 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/10/28 19:59:25 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:13:15 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class notFoundException: public std::exception
   {
     return "Not found";
   }
-} myex;
+};
 
 template <typename T>
 int	easyfind(T c, int n)
