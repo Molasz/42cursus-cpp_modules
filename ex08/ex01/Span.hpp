@@ -6,9 +6,11 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:53:42 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/11/05 13:01:21 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:06:37 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <iostream>
 #include <vector>
