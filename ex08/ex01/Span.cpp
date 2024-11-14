@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:53:45 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/11/05 13:06:54 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:46:09 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	Span::shortestSpan(void)
 {
 	unsigned int	min;
 	
+	if (_nums.empty() || _nums.size() == 1)
+		throw emptyException();
 	std::sort(_nums.begin(), _nums.end());
 	min = *(_nums.end() - 1);
 
@@ -73,6 +75,8 @@ int	Span::shortestSpan(void)
 
 int	Span::longestSpan(void)
 {
+	if (_nums.empty() || _nums.size() == 1)
+		throw emptyException();
 	std::sort(_nums.begin(), _nums.end());
 	return (*(_nums.end() - 1) - *_nums.begin());
 }
@@ -80,4 +84,9 @@ int	Span::longestSpan(void)
 const char *Span::maxSizeException::what(void) const throw()
 {
 	return "Span max size reached";
+}
+
+const char *Span::emptyException::what(void) const throw()
+{
+	return "Span is empty or only has 1 number";
 }

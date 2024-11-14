@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:53:42 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/11/14 12:06:37 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:43:52 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ class Span
 		int		longestSpan(void);
 
 		class maxSizeException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class emptyException: public std::exception
 		{
 			public:
 				virtual const char* what() const throw();

@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:55:27 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/11/05 12:13:15 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:37:21 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 #include <vector>
 #include <deque>
 #include <list>
@@ -29,10 +30,9 @@ class notFoundException: public std::exception
 template <typename T>
 int	easyfind(T c, int n)
 {
-	for (typename T::iterator i = c.begin(); i != c.end(); i++)
-	{
-		if (*i == n)
-			return (n);
-	}
+	typename T::iterator found = find(c.begin(), c.end(), n);
+	if (found != c.end())
+		return (*found);
 	throw notFoundException();
 }
+

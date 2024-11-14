@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:58:02 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/11/05 13:16:52 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:47:45 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ int	main(void)
 	Span sp = Span(SIZE);
 	Span spRange =  Span(SIZE);
 	std::vector<int>	nums;
+
+	try
+	{
+		sp.shortestSpan();
+	} catch (std::exception &err)
+	{
+		std::cout << err.what() << std::endl;
+	}
+
+	try
+	{
+		spRange.longestSpan();
+	} catch (std::exception &err)
+	{
+		std::cout << err.what() << std::endl;
+	}
 
 	for (int i = 0; i < SIZE; i++)
 	{
