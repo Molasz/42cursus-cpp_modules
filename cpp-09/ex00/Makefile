@@ -6,13 +6,13 @@
 #    By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 13:35:19 by molasz-a          #+#    #+#              #
-#    Updated: 2024/10/28 18:55:03 by molasz-a         ###   ########.fr        #
+#    Updated: 2024/12/18 18:43:08 by molasz-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = btc
 
-SRC = main.cpp
+SRC = main.cpp BitcoinExchange.cpp
 
 INCLUDES = BitcoinExchange.hpp
 
