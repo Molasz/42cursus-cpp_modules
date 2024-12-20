@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:52:18 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/12/20 19:21:52 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:57:33 by molasz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,13 +217,8 @@ double	BitcoinExchange::getBtcValue(const std::string &date)
 
 std::time_t BitcoinExchange::getDate(const std::string &date)
 {
-	int	day, month, year;
 	tm time = {};
 
-	year = stof(date.substr(0,4));
-	month = stof(date.substr(0,4));
-	day = stof(date.substr(0,4));
-	
 	time.tm_year = stof(date.substr(0,4)) - 1900;
     time.tm_mon = stof(date.substr(5, 2)) - 1;
     time.tm_mday = stof(date.substr(8,2));
