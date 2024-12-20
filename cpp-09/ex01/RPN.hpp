@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:55:27 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/12/20 20:13:05 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:48:25 by molasz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 class RPN
 {
   private:
-    std::stack<char>  _stack;
-    void              _parseArgs(char *args);
-    void              _calc();
+    std::stack<int>  _stack;
+    void              _calc(char c);
   public:
     RPN();
     ~RPN();

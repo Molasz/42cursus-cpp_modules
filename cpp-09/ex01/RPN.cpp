@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:52:18 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/12/20 20:18:06 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:50:16 by molasz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,38 +31,57 @@ RPN	&RPN::operator=(const RPN &ref)
 
 void	RPN::rpn(char *args)
 {
-	_parseArgs(args);
-	_calc();
-}
-
-void	RPN::_parseArgs(char *args)
-{
 	bool	space = true;
 
 	for (int i = 0; args[i]; i++)
 	{
 		if (args[i] == ' ')
 			space = true;
-		else if (std::isdigit(args[i]) || args[i] == '*' || args[i] == '/' || args[i] == '+' || args[i] == '-')
+		else if (std::isdigit(args[i]))
 		{
 			if (space)
-				_stack.push(args[i]);
+				_stack.push(args[i] - '0');
+			else
+				throw argsException();
+			space = false;
+		}
+		else if (args[i] == '*' || args[i] == '/' || args[i] == '+' || args[i] == '-')
+		{
+			if (space)
+				_calc(args[i]);
 			else
 				throw argsException();
 			space = false;
 		}
 	}
+	if (_stack.size() == 1)
+		std::cout << _stack.top();
+	else
+		throw argsException();
 }
 
-void	RPN::_calc()
+void	RPN::_calc(char c)
 {
-	char	actual;
+	int	a, b, r;
 
-	while (true)
+	if (_stack.size() < 2)
+		throw argsException();
+	b = _stack.top();
+	_stack.pop();
+	a = _stack.top();
+	_stack.pop();
+
+	if (c == '+')
+		r = a + b;
+	else if (c == '-')
+		r = a - b;
+	else if (c == '*')
+		r = a * b;
+	else
 	{
-		actual = _stack.top();
-		if (args[i] == '*' || args[i] == '/' || args[i] == '+' || args[i] == '-')
-
+		if (!b)
+			throw zeroDivisionException();
+		r = a / b;
 	}
-	
+	_stack.push(r);
 }
