@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:52:18 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/12/18 19:27:46 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/12/20 19:21:52 by molasz-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,16 @@ void	BitcoinExchange::readInputFile(char *file)
 	getline(inputFile, line);
 	if ("date | value" != line)
 		throw inputFileException();
-	while (getline (inputFile, line)) {
-		readInputLine(line);
+	while (getline (inputFile, line))
+	{
+		try
+		{
+			readInputLine(line);
+		}
+		catch (std::exception &err)
+		{
+			std::cout << "Error on input file: " << err.what() << std::endl;
+		}
 	}
 	inputFile.close();
 }
@@ -55,13 +63,20 @@ void	BitcoinExchange::readInputFile(char *file)
 void	BitcoinExchange::readInputLine(const std::string &line)
 {
 	std::string	date, value, sep;
+	double		fValue, result;
 
 	date = line.substr(0, 10);
 	sep = line.substr(10, 3);
 	value = line.substr(13);
-	if (!validateDate(date) || !validateFloatDigits(value) || sep != " | ")
-		throw inputFileException();
-	std::cout << "[" << date << "] " << value << std::endl;
+	if (!validateDate(date))
+		throw dateException();
+	if (!validateFloatDigits(value) || sep != " | ")
+		throw valueException();
+	fValue = stof(value);
+	if (fValue > 2147483647.0)
+		throw maxValueException();
+	result = getBtcValue(date) * fValue;
+	std::cout << "[" << date << "] " << fValue << "btc -> " << result << "$" << std::endl;
 }
 
 void	BitcoinExchange::readDb(const char *file)
@@ -74,8 +89,16 @@ void	BitcoinExchange::readDb(const char *file)
 	getline(dbFile, line);
 	if ("date,exchange_rate" != line)
 		throw dbFileException();
-	while (getline (dbFile, line)) {
-		readDbLine(line);
+	while (getline (dbFile, line))
+	{
+		try
+		{
+			readDbLine(line);
+		}
+		catch (std::exception &err)
+		{
+			std::cout << "Error on db file: " << err.what() << std::endl;
+		}
 	}
 	dbFile.close();
 }
@@ -83,12 +106,20 @@ void	BitcoinExchange::readDb(const char *file)
 void	BitcoinExchange::readDbLine(const std::string &line)
 {
 	std::string	date, value;
+	std::time_t	time;
+	double		fValue;
 
 	date = line.substr(0, 10);
 	value = line.substr(11);
-	if (!validateDate(date) || !validateFloatDigits(value) || line[10] != ',')
-		throw dbFileException();
-	btcValues[date] = stof(value);
+	if (!validateDate(date))
+		throw dateException();
+	if (!validateFloatDigits(value) || line[10] != ',')
+		throw valueException();
+	time = getDate(date);
+	fValue = stof(value);
+	if (fValue > 2147483647.0)
+		throw maxValueException();
+	btcValues[time] = fValue;
 }
 
 bool	BitcoinExchange::validateDigits(const std::string &str)
@@ -125,7 +156,7 @@ bool	BitcoinExchange::validateDate(const std::string &date)
 	bool				isYearLeap;
 
 	if (date[4] != '-' || date[7] != '-')
-		throw dbFileException();
+		return (false);
 	year = date.substr(0, 4);
 	month = date.substr(5,2);
 	day = date.substr(8,2);
@@ -155,12 +186,46 @@ bool	BitcoinExchange::validateDate(const std::string &date)
 	return (true);
 }
 
-float	BitcoinExchange::stof(const std::string &str)
+double	BitcoinExchange::stof(const std::string &str)
 {
 	std::stringstream	ss;
-	float				f;
+	double				f;
 
 	ss << str;
 	ss >> f;
 	return (f);
+}
+
+double	BitcoinExchange::getBtcValue(const std::string &date)
+{
+	std::map<std::time_t, double>::iterator i, save;
+	time_t	time = getDate(date);
+	int		diff = -1;
+
+	for (i = btcValues.begin(); i != btcValues.end(); i++)
+	{
+		if ((diff < 0 || time - i->first < diff) && time - i->first >= 0)
+		{
+			diff = time - i->first;
+			save = i;
+		}	
+	}
+	if (diff == -1)
+		throw noDbValueException();
+	return (save->second);
+}
+
+std::time_t BitcoinExchange::getDate(const std::string &date)
+{
+	int	day, month, year;
+	tm time = {};
+
+	year = stof(date.substr(0,4));
+	month = stof(date.substr(0,4));
+	day = stof(date.substr(0,4));
+	
+	time.tm_year = stof(date.substr(0,4)) - 1900;
+    time.tm_mon = stof(date.substr(5, 2)) - 1;
+    time.tm_mday = stof(date.substr(8,2));
+	return (std::mktime(&time));
 }
