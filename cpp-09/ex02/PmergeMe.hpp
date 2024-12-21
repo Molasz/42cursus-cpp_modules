@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:55:27 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/12/21 13:23:43 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:07:58 by molasz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@
 class PmergeMe
 {
   private:
-    std::deque<unsigned int>   _dq;
+    std::deque<unsigned int>   _deq;
     std::vector<unsigned int>  _vec;
-    bool            _validateInput(char **args);
-    unsigned long   _stoui(const std::string &str);
+
+    bool  _validateInput(char **args);
     void  _printVector(std::vector<unsigned int> vec, const std::string &str);
-    void  _sortVector(std::vector<unsigned int> vec);
-    void  _sortDeque();
+    void  _sortVec(std::vector<unsigned int> &vec, int left, int right);
+    void  _mergeVec(std::vector<unsigned int> &vec, int left, int mid, int right);
+    void  _sortDeq(std::deque<unsigned int> &deq, int left, int right);
+    void  _mergeDeq(std::deque<unsigned int> &deq, int left, int mid, int right);
+    unsigned long   _stoui(const std::string &str);
   public:
     PmergeMe();
     ~PmergeMe();

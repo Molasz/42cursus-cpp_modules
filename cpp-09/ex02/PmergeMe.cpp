@@ -6,7 +6,7 @@
 /*   By: molasz-a <molasz-a@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:52:18 by molasz-a          #+#    #+#             */
-/*   Updated: 2024/12/21 13:24:38 by molasz-a         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:16:55 by molasz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ PmergeMe::PmergeMe(const PmergeMe &ref)
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &ref)
 {
-	_dq = ref._dq;
+	_deq = ref._deq;
 	_vec = ref._vec;
 	return (*this);
 }
@@ -33,21 +33,21 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &ref)
 void	PmergeMe::sort(char **args)
 {
 	int	startTime, size;
-	double vecTime, dqTime;
+	double vecTime, deqTime;
 
 	if (!_validateInput(args))
 		throw inputException();
 	size = _vec.size();
 	_printVector(_vec, "Before");
 	startTime = std::clock();
-	_sortVector(_vec);
-	vecTime = (double)(std::clock() - startTime) / CLOCKS_PER_SEC;
+	_sortVec(_vec, 0, _vec.size() - 1);
+	vecTime = (double)(std::clock() - startTime);
 	startTime = std::clock();	
-	_sortDeque();
-	dqTime = (double)(std::clock() - startTime) / CLOCKS_PER_SEC;
+	_sortDeq(_deq, 0, _deq.size() - 1);
+	deqTime = (double)(std::clock() - startTime);
 	_printVector(_vec, "After");
-	std::cout << "Time to process a range of " << size << " elements with vector: " << vecTime << "s" << std::endl; 
-	std::cout << "Time to process a range of " << size << " elements with deque: " << dqTime << "s" << std::endl; 
+	std::cout << "Time to process a range of " << size << " elements with vector: " << vecTime << "µs" << std::endl; 
+	std::cout << "Time to process a range of " << size << " elements with deque: " << deqTime << "µs" << std::endl; 
 }
 
 bool	PmergeMe::_validateInput(char **args)
@@ -64,7 +64,7 @@ bool	PmergeMe::_validateInput(char **args)
 		n = _stoui(args[i]);
 		if (n > 4294967295)
 			return (false);
-		_dq.push_back(n);
+		_deq.push_back(n);
 		_vec.push_back(n);
 	}
 	return (true);
@@ -90,42 +90,100 @@ void	PmergeMe::_printVector(std::vector<unsigned int> vec, const std::string &st
 	std::cout << std::endl;
 }
 
-void	PmergeMe::_sortVector(std::vector<unsigned int> vec)
+void	PmergeMe::_sortVec(std::vector<unsigned int> &vec, int left, int right)
 {
-	std::vector< std::pair <unsigned int, unsigned int> >	pairs;
-	std::vector<unsigned int> lVec, sVec;
+	int	mid;
 
-	if (vec.size() < 2)
-		return;
-	for (std::vector<unsigned int>::iterator i = vec.begin(); i != vec.end() && i + 1 != vec.end(); i += 2)
-		pairs.push_back(std::make_pair(*i, *(i + 1)));
-	if (vec.size() != pairs.size() * 2)
-		pairs.push_back(std::make_pair(*(vec.end() - 1), 0));
-	for (std::vector< std::pair <unsigned int, unsigned int> >::iterator i = pairs.begin(); i != pairs.end(); i++)
-	{
-		if (_vec.size() % 2 && i + 1 == pairs.end())
-		{
-			lVec.push_back(i->first);
-			break;
-		}
-		if (i->first > i->second)
-		{
-			lVec.push_back(i->first);
-			sVec.push_back(i->second);
-		}
-		else
-		{
-			lVec.push_back(i->second);
-			sVec.push_back(i->first);
-		}
-	}
-	_sortVector(lVec);
-	_sortVector(sVec);
-	_printVector(lVec, "Large");
-	_printVector(sVec, "Small");
-	
+	if (left >= right)
+        return;
+    mid = left + (right - left) / 2;
+    _sortVec(vec, left, mid);
+    _sortVec(vec, mid + 1, right);
+    _mergeVec(vec, left, mid, right);
 }
 
-void	PmergeMe::_sortDeque()
-{}
+void	PmergeMe::_mergeVec(std::vector<unsigned int> &vec, int left, int mid, int right)
+{
+	int i = 0, j = 0, k = left;
+	int n1 = mid - left + 1;
+    int n2 = right - mid;
+	std::vector<unsigned int> vLeft(n1), vRight(n2);
 
+	for (int a = 0; a < n1; a++)
+        vLeft[a] = vec[left + a];
+    for (int a = 0; a < n2; a++)
+        vRight[a] = vec[mid + 1 + a];
+
+    while (i < n1 && j < n2) {
+        if (vLeft[i] <= vRight[j]) {
+            vec[k] = vLeft[i];
+            i++;
+        }
+        else {
+            vec[k] = vRight[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        vec[k] = vLeft[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        vec[k] = vRight[j];
+        j++;
+        k++;
+    }
+}
+
+void	PmergeMe::_sortDeq(std::deque<unsigned int> &deq, int left, int right)
+{
+	int	mid;
+
+	if (left >= right)
+        return;
+    mid = left + (right - left) / 2;
+    _sortDeq(deq, left, mid);
+    _sortDeq(deq, mid + 1, right);
+    _mergeDeq(deq, left, mid, right);
+}
+
+void	PmergeMe::_mergeDeq(std::deque<unsigned int> &deq, int left, int mid, int right)
+{
+	int i = 0, j = 0, k = left;
+	int n1 = mid - left + 1;
+    int n2 = right - mid;
+	std::deque<unsigned int> dLeft(n1), dRight(n2);
+
+	for (int a = 0; a < n1; a++)
+        dLeft[a] = deq[left + a];
+    for (int a = 0; a < n2; a++)
+        dRight[a] = deq[mid + 1 + a];
+
+    while (i < n1 && j < n2) {
+        if (dLeft[i] <= dRight[j]) {
+            deq[k] = dLeft[i];
+            i++;
+        }
+        else {
+            deq[k] = dRight[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        deq[k] = dLeft[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        deq[k] = dRight[j];
+        j++;
+        k++;
+    }
+}
